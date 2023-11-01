@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <h2>Portal Transaksi</h2>
+    <h4>Nama Pemilik Tabungan: {{bukutabungan.namapemilik.nama}}</h4>
+  </div>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="btn btn-primary" type="submit" value="Submit">
+  </form>
+</div>
+{% endblock %}

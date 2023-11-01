@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        <p>Apakah anda yakin menghapus data "{{object}}"?</p>
+        <input type="submit" class="btn btn-danger" value="Confirm">
+    </form>
+</div>
+{% endblock %}

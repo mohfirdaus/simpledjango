@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h2>Please Register!</h2>
+    </div>
+        <div class="row">
+            <div class="col-md-4">
+                <form action="{% url 'register' %}?next={{ request.GET.next }}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="{{ form.username.id_for_label }}" class="col-sm-3 col-form-label">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="username" class="form-control" id="{{ form.username.id_for_label }}" placeholder="Username">
+                            </div>
+                              {% if form.username.errors %}
+                              <ul class="errorlist">
+                                  {% for error in form.username.errors %}
+                                  <li>{{ error }}</li>
+                                  {% endfor %}
+                              </ul>
+                          {% endif %}
+                    </div>
+                    <div class="form-group row">
+                        <label for="{{ form.password1.id_for_label }}" class="col-sm-3 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" name="password1" class="form-control" id="{{ form.password1.id_for_label }}" placeholder="Password">
+                            </div>
+                              {% if form.password1.errors %}
+                              <ul class="errorlist">
+                                  {% for error in form.password1.errors %}
+                                  <li>{{ error }}</li>
+                                  {% endfor %}
+                              </ul>
+                          {% endif %}
+                    </div>
+                    <div class="form-group row">
+                        <label for="{{ form.password2.id_for_label }}" class="col-sm-12 col-form-label">Confirm Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" name="password2" class="form-control" id="{{ form.password2.id_for_label }}" placeholder="Confirm Password">
+                            </div>
+                              {% if form.password2.errors %}
+                              <ul class="errorlist">
+                                  {% for error in form.password2.errors %}
+                                  <li>{{ error }}</li>
+                                  {% endfor %}
+                              </ul>
+                          {% endif %}
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Register" id="login-btn">
+                </form>
+            </div>
+        </div>
+    <br>
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="jumbotron">
+    <h2>Transaksi oleh {{bukutabungan.namapemilik.nama}}</h2>
+    <h3>Saldo: Rp{{saldo}}</h3>
+    <a href="{% url 'formtransaksi' bukutabungan.pk %}" class="btn btn-success">Tambah Transaksi</a>
+</div>
+<div class="container">
+    <table class="table table-bordered" >
+        <thead>
+            <tr>
+                <th>Tipe Transaksi</th>
+                <th>Nominal</th>
+                <th>Tanggal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaksi in transaksi_list %}
+                <tr>
+                    <td>{{ transaksi.tipetransaksi }}</td>
+                    <td>Rp{{ transaksi.nominal }}</td>
+                    <td>{{ transaksi.tanggal }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">Tidak ada transaksi yang ditemukan.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

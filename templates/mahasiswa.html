@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>Form Mahasiswa</h2>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="save btn btn-primary">Simpan</button>
+                </div>
+                
+            </form>
+        </div>
+        <div class="col">
+            {% if form.instance.foto and not form.is_bound %}
+            <div>
+                <p>Current Image:</p>
+                <img class="img-fluid" src="{{ form.instance.foto.url }}" alt="Mahasiswa Image">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
